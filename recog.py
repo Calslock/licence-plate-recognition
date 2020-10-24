@@ -15,7 +15,7 @@ args = parser.parse_args()
 #pyt.pytesseract.tesseract_cmd = r'<add path here>'
 
 #tesseract config
-config = r'--oem 3 --psm 11 -c tessedit_char_whitelist=ACEFGHJKLMNPQRSTUVWXY0123456789 language'
+config = r'--oem 3 --psm 11 -c tessedit_char_whitelist=ACEFGHJKLMNPQRSTUVWXY0123456789 -c language_model_penalty_non_freq_dict_word=1 -c language_model_penalty_non_dict_word=1'
 
 #cv2 read image
 img = cv2.imread(args.image)
