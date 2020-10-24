@@ -14,14 +14,14 @@ args = parser.parse_args()
 #else uncomment next line and add path to executable
 #pyt.pytesseract.tesseract_cmd = r'<add path here>'
 
-#tesseract config
+#tesseract config added
 config = r'--oem 3 --psm 11 -c tessedit_char_whitelist=ACEFGHJKLMNPQRSTUVWXY0123456789 -c language_model_penalty_non_freq_dict_word=1 -c language_model_penalty_non_dict_word=1'
 
 #cv2 read image
 img = cv2.imread(args.image)
 
-#cv2.imshow('original', img)
-#cv2.waitKey()
+cv2.imshow('original', img)
+cv2.waitKey()
 
 #change color to grey and apply bluring filter
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -67,10 +67,10 @@ if found:
 
     #and crop image
     (x,y) = np.where(mask==255)
-    cropped = img[np.min(x):np.max(x)+1, np.min(y):np.max(y)+1]
+    cropped = gray[np.min(x):np.max(x)+1, np.min(y):np.max(y)+1]
 
-    #cv2.imshow('cropped', cropped)
-    #cv2.waitKey()
+    cv2.imshow('cropped', cropped)
+    cv2.waitKey()
 
     ocr = pyt.image_to_string(cropped, config=config)
     ocr = ocr.replace(":", " ").replace("-", " ").replace("\n", "")
